@@ -1,0 +1,418 @@
+@charset "utf-8";
+//wtach를 켜라!!!!!!!!!!!
+
+
+*{margin:0; padding:0;}
+img{vertical-align:top;}
+li{list-style:none;}
+
+/*SCSS 변수 선언*/
+$main : #000;
+
+//텍스트 선택영여 스타일
+::selection{color:#fff; background:$main;}
+
+.clearfix{display:block; content:""; clear:both;}
+
+
+
+html{ font-family: "Pretendrad",sans-serif;
+font-size:12px;}
+
+body{line-height:1.6; font-family:"Pretendard" !important;}
+/*
+1.6 -> 각 영역별 적용된 글자크기에 비례해서 1.6배를 적용
+1.6em -> 현재 body의 글자크기(12px)에 비례해서 1.6배인 19.2px로 적용
+*/
+a{display:inline-block; text-decoration:none; color:inherit;}
+//color:inherit; -> 부모의 컬러를 따라감
+
+
+
+
+
+
+
+header{position:fixed; width:100%; padding:20px 0; color:#fff;
+    transition:all .3s ease-in-out; z-index:100;
+    .inner{padding:0 100px;}
+    a:hover{color:$main;} //sns아이콘도 글자라서 header의 a에게 설정
+    #logo{
+        margin:35px 90px 0 150px; float:left;
+        a{width:150px; height:30px; 
+        background:url("../img/logo.png") no-repeat;
+        background-size:100% auto; text-indent:-9999px;
+        transition:all .2s ease-in-out;}
+    }//end:#logo
+    &.scrolled{
+        background:#fff; color:#333; padding:0;
+        border-bottom:1px solid #eee;
+        #logo a{background:url("../img/logo_b.png") no-repeat;
+        background-size:cover;}
+        #gnb a::after{background:#333;}
+    }//end:.scrolled
+}//end:header
+
+#gnb{
+
+    li{float:left; margin-top:23px;}
+    .my{margin-right:40px;}
+    a{width:90px; padding:15px;
+    font-weight:bold; font-family:"Pretendard"; font-size:16px;}
+    a::after{content:""; display:block; background:#fff;
+    width:0; height:2px; transition:all .2s ease-in-out;}
+    a:hover::after{width:100%;}
+    
+    & > ul{display:flex;}
+    
+   
+    .sub{
+        display:none;
+        li{float:none; margin-left:15px;}
+
+        a{font-weight:bold; padding:0; font-size:14px;
+          white-space:nowrap;  width:100%; outline:2px solid olive;
+        }
+        
+        a:first-child{padding-left:0;}
+        a::after{display:none;}} //밑줄안생기게
+    //end:sub
+    :hover .sub{display:block;}
+}//end:gnb*/
+
+
+
+#sns{float:right; margin-right:150px;
+    li{float:left; margin-top:22px;}
+    a{padding:15px 5px;}
+}//end:sns
+
+
+
+#search{
+    position:fixed; top:0; left:0 ; bottom:0; right:0;
+    background:#000; z-index:200; display:flex; justify-content:center;
+    align-items:center;
+    .inner{width:50%;}
+    input{width:100%; font-size:7vw; padding:0 0.1em;
+    box-sizing:border-box; background:none;
+    border:0; border-bottom:4px solid #5abcc4;
+    outline:none; color:#5abcc4; font-family:inherit;}
+    input::placeholder{color:#222;}
+    p{color:#5abcc4; font-size:90%; font-weight:bold;
+    padding:0.85em; text-align:right;}
+    .close_search{
+        position:absolute; top:1.25em; right:1.25em; font-size:2em;
+        padding:10px; color:#5abcc4; cursor:pointer;
+        i{transition:all 0.3s;}
+        &:hover i{transform:rotate(90deg);}
+        }
+//end:close_search  
+}//end:search
+
+
+
+
+#main_view{position: relative; overflow:hidden;
+    .slider{display:flex;
+    .view{width:100%; height:100vh;
+    background:center/cover no-repeat; position:relative;
+    flex-shrink:0;}
+    //flex-shrink:0 -> 너비가 줄어들지 않게한다
+    }
+    .swiper-slide-active .text{opacity:1; transform:translateY(0);
+    transition-delay:0.6s;}
+    //딜레이를 여기에 걸어야 나타날때만 딜레이가 걸림
+
+    /*end:slider*/
+    .pager{position:absolute; bottom:16px; left:50%; z-index:20;
+        transform:translateX(-50%); 
+        //translateX로 정확하게 가운데로 정렬할 수 있다.
+        span{display:block; float: left; width:6px; height:6px;
+        margin:0 5px; border-radius:50%; border:1px solid #fff;
+        cursor: pointer; }
+        span.active{background:#fff;}
+    }
+}/*end:main_view*/
+
+
+   
+
+/*video_box*/
+.video_box{   
+    video{width:100%; height:100%; object-fit:cover;
+    }
+}
+
+
+
+/*brand*/
+#brand{text-align:center; margin:400px 0 500px; 
+    height:40%; position: relative;
+    opacity: 0;
+    &.show{
+        animation-name : text_up;
+        animation-duration : 1s;
+        animation-timing-function:linear;
+        animation-iteration-count:1;
+        animation-fill-mode:both
+    }
+    transition: all ease-in-out;
+
+   @keyframes text_up {
+        0%{transform: translateY(50px); opacity: 0;}
+        100%{transform: translateY(0); opacity: 1;}
+   }
+
+    #brand_bg{background:url("../img/rose.png") no-repeat;
+    position:absolute; width:529px; height:662px; //brand가 상위
+    top:-85px; left:800px; opacity:0.05;
+    }
+   
+
+    h1{font-size:40px; font-weight:bold; font-weight:800;
+    margin-bottom:30px;}
+
+    p{font-size:20px;}
+}
+
+
+/*img*/
+#img{background:url("../img/img_fixed.jpg") no-repeat;
+    height:703px; width:auto; background-size:contain;
+    background-attachment:fixed; margin-top:500px;}
+
+
+
+
+/*product*/
+#product{
+    width:100%; height:40%; margin:500px 0;
+    h1{font-size:40px; text-align:center; font-weight:700;
+    margin-bottom:100px;}
+    ul{}
+    li{position:relative; float:left; margin-bottom:400px;
+    } 
+    a{filter: grayscale(100%);
+    overflow:hidden;}
+    a::before{content:""; display:block; width:180px; height:55px;
+        background-color:rgba(255,255,255,0.6); opacity:0;
+        position:absolute; bottom:100px; left:50%; margin-left:-90px;
+        transition:all 0.3s ease;
+        border-bottom:2px solid #fff; border-top:2px solid #fff;}
+
+    a:hover::before{bottom:265px; opacity:0.8;}
+    a:hover{filter: grayscale(0);}
+    a:hover p{opacity:1;}
+    p{position:absolute; font-size:30px; opacity:0; text-align: center;
+        top:49.2%; left:40%;  height:50px; line-height:50px;
+        transition:all 0.3s ease-in-out;}
+    li:nth-child(2) p{top:49.5%; left:38%;}
+    
+}
+
+/*
+top:50%; left:50%; margin-left:-90px; -> 텍스트
+ img{transition:all 0.3s ease;}
+    img:hover{transform:scale(1.05,1.05);}}
+*/
+
+
+
+
+/*best*/
+#best{clear:both; margin-bottom:300px;
+    height:940px; 
+    position:relative; overflow:hidden; display:flex;
+    .swiper-slide{flex-basis:50%; position: relative;}
+    #best_left{position:relative;}
+    span{position:absolute; bottom:150px; left:150px; color:#000;
+    z-index:999; font-weight:700;
+    font-size:30px;}
+    p{position:absolute; bottom:120px; left:150px; color:#000;
+    z-index:999; font-size:20px; font-weight:700;}
+
+    #best_left::after{background:rgba(0, 0, 0, .5); content:""; position:absolute;
+    content:""; top:0; left:0; bottom:0; right:0; cursor: pointer;}
+    h1{font-size:40px; position:absolute; top:150px; left:150px;
+    color:white; font-weight:bold; z-index:90;}
+    
+    .swiper-button-prev{width:200px; height:200px; position:absolute; z-index:999;
+    color:red;}
+
+
+}
+
+
+
+
+
+
+/*new*/
+#new{clear:both; 
+   
+    #new_item.show{transform:translateY(0); opacity:1;}
+    h1{margin:100px 0; text-align: center; font-size:40px;
+    font-weight:700; padding-top:100px;}
+    ul{margin-left:200px;}
+    li{display:inline-block; padding:0 2px; position: relative;
+    overflow:hidden; cursor: pointer;
+    transition:all 3s ease; transform:translateY(250px); opacity:0.5;
+}
+    li::before{background:rgba(0, 0, 0, .4); content:"";
+    top:0; left:0; right:0; bottom:0; position:absolute;}
+    li{transition:all 0.2s ease-in-out;}
+    li:hover{border-radius:10%;}
+    li.show{transform:translateY(0); opacity:1;}
+
+
+
+
+    span{position:absolute; top:40px; left:30px; font-size:25px;
+    font-weight:500; color:white;}
+    p{position:absolute; bottom:40px; left:30px; font-size:20px;
+    font-weight:500; color:white;}
+}
+
+
+
+
+
+
+/*service*/
+.clearfix{clear: both; content:""; display:block;}
+#service{
+    h1{font-size:40px; text-align:center; margin-bottom:150px;
+        font-weight:bold;}
+    margin:400px 300px;
+
+    .sev{margin-bottom:200px; 
+       transition:all 0.3s ease; transform:translateY(200px);opacity:0;
+    .text{display:inline-block; margin-left:150px;}
+    span{font-size:30px; font-weight:700; display:block; margin:150px 0 20px;}
+    p{font-size:20px;}
+    .more{width:170px; height:50px;  position: relative;
+        transition:all 0.3s ease-in-out; margin-top:200px;
+        text-transform:uppercase; overflow:hidden;
+            border:1px solid black;
+            margin-top:200px;
+            p{font-size:20px; padding-top:10px; display:inline-block;}
+        p:nth-child(1){padding-left:15px;}
+        p:nth-child(2){padding-left:60px;}
+        }
+        .more::before{content:""; position:absolute; width:100%; height: 100%;
+            background:#000; top:100%; left:0; transition:all 0.3s;
+            z-index:-1;}
+            .more:hover::before{transform:translateY(-100%); }
+            .more:hover{color:white;}
+    }
+    .sev.show{transform:translateY(0); opacity:1;}
+
+
+
+
+
+
+
+
+    .part{margin-bottom:250px; 
+        transition:all 0.3s ease; transform:translateY(200px);opacity:0;
+
+        img{float:right;}
+        .text{display:inline-block; margin-left:150px;
+        span{font-size:30px; font-weight:700; display:block;
+            margin:150px 0 20px;}
+            p{font-size:20px;}
+            .more{width:170px; height:50px; position: relative;
+                transition:all 0.3s ease-in-out; margin-top:200px;
+                 text-transform:uppercase;
+                overflow:hidden; border:1px solid black;
+
+                    p{font-size:20px; padding-top:10px; display:inline-block;}
+        p:nth-child(1){padding-left:15px;}
+        p:nth-child(2){padding-left:60px;}
+                }
+
+            .more::before{content:""; position:absolute; width:100%; height: 100%;
+                background:#000; top:100%; left:0; transition:all 0.3s;
+                z-index:-1;}
+                .more:hover::before{transform:translateY(-100%); }
+                .more:hover{color:white;}
+    } 
+    }
+    .part.show{transform:translateY(0); opacity:1;}
+        
+}
+        
+
+
+/*com*/
+#com{text-align:center; 
+    background:url("../img/com_bg.png") no-repeat;
+    h1{margin-bottom:100px; font-size:40px; font-weight:700;
+    padding-top:150px;}
+    .box{display:inline-block; padding:0 8px; margin-bottom:350px;
+    dt{font-size:25px; font-weight:600; margin:80px 0 10px;}
+    dd{font-size:18px; font-weight:500;}
+    .com_more{width:493; height:30px; outline:1px solid black; cursor: pointer;
+        margin:60px auto;  transition:all 0.2s ease-in-out;
+        
+    p{font-size:15px; font-weight:700; line-height:30px;}}
+    .com_more:hover{background:rgba(0,0,0,0.9); width:493; height:30px;
+    color:white;}
+}
+}
+
+
+
+
+/*footer*/
+footer{height:600px; position: relative;
+    background:#111; color:#999; 
+    .inner{height:150px; padding:50px 120px; line-height:1.4;}
+   .logo{margin:50px 0 30px 80px;}
+    .logo img{width:200px;}
+    .info{margin-left:80px; float:left;
+        hr{width:600px; margin:30px 0;}
+        li{display:inline-block; font-size:15px; padding:3px 0;}
+        li:last-child{font-size:10px;}
+        a{font-weight:bold; color:#bbbbbb;}
+
+        a:hover{color:white;}
+
+    }//end:info
+    .mail{float:left; margin:-80px 80px 0;
+        width:380px; height:450px; position:relative;
+        h2{font-size:20px; font-weight:700; margin-bottom:50px;}
+        h3{font-size:15px; border-bottom:2px solid #646464;
+        padding-bottom:20px;}
+            legend{margin-top:30px;              
+            }
+            label{margin-top:15px; cursor: pointer;
+            display: block; font-size:12px; vertical-align: top;}
+            input{margin-right:10px; width: 1.5rem; height: 1.5rem;
+                vertical-align:top; cursor: pointer;
+            }
+            a{text-decoration:underline;}
+            a:hover{color:white;}
+            P{margin:15px 0;}
+            button{margin-top:20px; width:150px; height:50px;
+                background:#111; border:1px solid #eee;
+                color:#eee; cursor: pointer; transition:all 0.15s ease;
+            }
+            button:hover{background:#eee; color:#111;}          
+            }     
+            
+        #sns{position:absolute; top:100px; right:150px;
+            width:250px;
+            h2{font-size:20px; font-weight:700; margin-left:10px;}
+            ul{
+                li{margin-right:20px; 
+                    i{font-size:25px; transition:all 0.15s ease;}
+                    i:hover{color:#fff;}
+                }
+                
+            }
+        }
+
+}//end : footer

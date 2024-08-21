@@ -1,0 +1,26 @@
+EzenAddClass 플러그인
+최종수정일 : 2024.07.30
+
+[html 작성법]
+	
+	<div id="target"></div>
+	
+	<a href="#target" class="btn">버튼</a>
+	
+	
+[플러그인 호출법 #1]
+const name = new EzenAddClass(".btn");
+
+※ [name]값은 중복되지 않는 텍스트
+
+
+[플러그인 호출법 #2]
+const name = new EzenAddClass(".btn",{
+	class:'active',  			//부여되는 클래스명
+	addTarget:'none',	//추가되는 타켓
+	motion:'click',			//이벤트유형
+	addBtn:'none',		//추가버튼
+	remove:'none',		//클래스를 지우는 버튼(추가)
+});
+
+※ [name]값은 중복되지 않는 텍스트

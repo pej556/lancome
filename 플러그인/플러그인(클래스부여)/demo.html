@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>EzenAddClass 플러그인 예시</title>
+	<script src="EzenAddClass.js"></script>
+	<style>
+		html,body{height:100%;margin:0;}
+		#fixed_menu{
+			position:fixed; height:100%; top:0; right:0;
+			width:200px; height:100%; background:#3CC;
+			box-shadow:-5px 0 3px rgba(0,0,0,0.6); transition:all 0.5s;}
+		.btn{display:block; width:50px; height:80px; background:#3cc;
+			text-align:center; line-height:80px; color:#fff; 
+			text-decoration:none; box-shadow:-4px 0 3px 2px rgba(0,0,0,0.6);
+			border-radius:5px 0 0 5px;
+			position:absolute; left:-49px; top:50%; margin-top:-40px;}
+		#fixed_menu.active{
+			transform:translateX(100%);
+		}
+		#fixed_menu .btn i{display:block; width:30px; height:4px; border-radius:2px;
+				background:#fff; position:absolute; top:50%; left:50%; margin:-2px 0 0 -15px;
+				transition:all 0.4s;}
+		#fixed_menu .btn i:nth-child(1){transform:translateY(0) rotate(40deg);}
+		#fixed_menu .btn i:nth-child(2){opacity:0;}
+		#fixed_menu .btn i:nth-child(3){transform:translateY(0) rotate(-40deg);}
+		#fixed_menu .btn.active i:nth-child(1){transform:translateY(-8px) rotate(0deg);}
+		#fixed_menu .btn.active i:nth-child(2){opacity:1;}
+		#fixed_menu .btn.active i:nth-child(3){transform:translateY(8px) rotate(0deg);}	
+		</style>	
+		<script>
+			const eac = new EzenAddClass(".btn",{
+				addBtn:'.aa'
+			});
+		</script>
+</head>
+<body>
+	<div id="fixed_menu">
+		<a class="btn" href="#fixed_menu">
+				<i></i><i></i><i></i>
+			</a>
+		<div class="inner">
+			
+		</div>
+	</div>
+
+	<a class="aa" href="#fixed_menu">aa<aa>
+</body>
+</html>

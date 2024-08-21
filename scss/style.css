@@ -1,0 +1,268 @@
+@charset "UTF-8";
+/*SCSS 변수 선언*/
+::-moz-selection {
+  color: #fff;
+  background: #20bec6;
+}
+::selection {
+  color: #fff;
+  background: #20bec6;
+}
+
+html {
+  font-family: "Pretendrad", sans-serif;
+  font-size: 12px;
+}
+
+body {
+  line-height: 1.6;
+}
+
+/*
+1.6 -> 각 영역별 적용된 글자크기에 비례해서 1.6배를 적용
+1.6em -> 현재 body의 글자크기(12px)에 비례해서 1.6배인 19.2px로 적용
+*/
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/*SCSS는 저렇게 안에 적어도 됨*/
+header {
+  position: fixed;
+  width: 100%;
+  padding: 20px 0;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  z-index: 100;
+}
+header .inner {
+  padding: 0 100px;
+}
+header a:hover {
+  color: #20bec6;
+}
+header #logo {
+  margin: 18px 50px 0 15px;
+  float: left;
+  /*로고가 무조건 hover효과가 들어가게 !important 부여*/
+}
+header #logo a {
+  width: 100px;
+  height: 28px;
+  background: url("../images/logo.png") no-repeat;
+  background-size: 100% auto;
+  text-indent: -9999px;
+  transition: all 0.2s ease-in-out;
+}
+header #logo a:hover {
+  background-position: 0 bottom !important;
+}
+header.scrolled {
+  background: #fff;
+  color: #333;
+  padding: 0;
+  border-bottom: 1px solid #eee;
+}
+header.scrolled #logo a {
+  background-position: 0 -28px;
+}
+header.scrolled #gnb a::after {
+  background: #333;
+}
+
+#gnb {
+  /*&를 붙이면 gnb에 hover를 붙이는 것*/
+}
+#gnb li {
+  float: left;
+  margin-top: 8px;
+}
+#gnb a {
+  width: 70px;
+  padding: 15px;
+  font-weight: bold;
+}
+#gnb a::after {
+  content: "";
+  display: block;
+  background: #fff;
+  width: 0;
+  height: 2px;
+  transition: all 0.2s ease-in-out;
+}
+#gnb a:hover::after {
+  width: 100%;
+}
+#gnb .sub {
+  display: none;
+  padding-bottom: 20px;
+  /*영어는 철자가 아니라 단어로 줄바꿈이 됨
+  BRAND STORY는 줄바꿈이 되지만 ARCHITECTURE 줄바꿈이 되지 않음*/
+}
+#gnb .sub li {
+  float: none;
+  margin: 0 0 0 15px;
+}
+#gnb .sub a {
+  font-weight: normal;
+  padding: 0;
+  font-size: 10px;
+  white-space: nowrap;
+}
+#gnb .sub a::after {
+  display: none;
+}
+#gnb .sub a:hover {
+  text-decoration: underline;
+}
+#gnb:hover .sub {
+  display: block;
+}
+
+#sns {
+  float: right;
+}
+#sns li {
+  float: left;
+  margin-top: 8px;
+}
+#sns a {
+  padding: 15px 5px;
+}
+
+#search {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #000;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#search .inner {
+  width: 50%;
+}
+#search input {
+  width: 100%;
+  font-size: 7vw;
+  padding: 0 0.1em;
+  box-sizing: border-box;
+  background: none;
+  border: 0;
+  border-bottom: 4px solid #5abcc4;
+  outline: none;
+  color: #5abcc4;
+  font-family: inherit;
+}
+#search input::-moz-placeholder {
+  color: #222;
+}
+#search input::placeholder {
+  color: #222;
+}
+#search p {
+  color: #5abcc4;
+  font-size: 90%;
+  font-weight: bold;
+  padding: 0.85em;
+  text-align: right;
+}
+#search .close_search {
+  position: absolute;
+  top: 1.25em;
+  right: 1.25em;
+  font-size: 2em;
+  padding: 10px;
+  color: #5abcc4;
+  cursor: pointer;
+}
+#search .close_search i {
+  transition: all 0.3s;
+}
+#search .close_search:hover i {
+  transform: rotate(90deg);
+}
+
+#main_view {
+  position: relative;
+  overflow: hidden;
+  /*end:slider*/
+}
+#main_view .slider {
+  display: flex;
+}
+#main_view .slider .view {
+  width: 100%;
+  height: 100vh;
+  background: center/cover no-repeat;
+  position: relative;
+  flex-shrink: 0;
+}
+#main_view .swiper-slide-active .text {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s;
+}
+#main_view .pager {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+#main_view .pager span {
+  display: block;
+  float: left;
+  width: 6px;
+  height: 6px;
+  margin: 0 5px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+#main_view .pager span.active {
+  background: #fff;
+}
+
+/*end:main_view*/
+/*footer*/
+footer {
+  background: #000;
+  color: #999;
+}
+footer .inner {
+  height: 150px;
+  padding: 50px 120px;
+  line-height: 1.4;
+  display: flex;
+}
+footer .logo {
+  width: 30%;
+}
+footer .logo img {
+  width: 100px;
+}
+footer .info {
+  width: 35%;
+  padding-left: 20px;
+}
+footer .info dt {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+footer .info dd {
+  margin-bottom: 5px;
+}
+footer .copyright {
+  padding: 20px 120px;
+  border-top: 1px solid #222;
+}
+footer .copyright p {
+  margin: 10px 0;
+  font-size: 10px;
+}/*# sourceMappingURL=style.css.map */
